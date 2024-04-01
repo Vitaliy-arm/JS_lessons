@@ -1,15 +1,28 @@
 const riddle = {
     question: 'Висит груша нельзя скушать',
     correctAnswer: 'лампочка',
-    hints: ['это съдобное', 'это фрукт'],
+    hints: ['это съедобное', 'это фрукт'],
     tries: 3,
     checkAnswer(str) {
+        if (this.tries < 1) {
+            return alert('Игра окончена!')
+        }
         if (str.toLowerCase().includes(this.correctAnswer)){
             alert('Правильный ответ');
             console.log('Правильный ответ');
         } else {
             alert('Неправильный ответ');
             console.log('Неправильный ответ');
+            this.tries--;
+
+            const hint = this.hints[this.tries === 2 ? 0 : 1];
+            if(this.tries){
+                alert('Подсказка: ' + hint);
+               
+            } else {
+                alert('Игра окончена!');
+            }
+
         }
 
     }
