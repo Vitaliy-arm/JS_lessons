@@ -19,10 +19,12 @@ const products = [
 let order = [];
 
 function addToBasket(productId) {
-    // TODO: Добавить проверку наличия товара в заказе (при наличии выдавать alert, чт отоавар уже в корзине)
+    // TODO: Добавить проверку наличия товара в заказе (при наличии выдавать alert, что товар уже в корзине)
 
     // TODO: если товар еще не в корзине, добавить его из массива products
-
+    const product = products.find((item) => item.id === productId);
+    order = [...order, product];
+    console.log(order);
     // Эти строчки не трогаем, они отвечают за переотрисовку страницы
     renderCart();
     rerenderTotalPrice();
@@ -40,18 +42,18 @@ function rerenderTotalPrice() {
     // TODO: опишите функционал общей стоимости заказа
 
     // Не меняйте эту строчку
-    document.getElementById('total').innerText = rerenderTotalPrice;
+    document.getElementById('total').innerText = totalPrice;
 }
 
 // Этот остается без изменений
 function renderCart() {
     const cart = document.getElementById('basket-items');
 
-    cart.inertHTML = '';
+    cart.innerHTML = '';
     order.forEach((item) => {
-        const e1 = document.createElement('1i');
-        e1.innerText = item.title;
-        e1.onclick = () => removeFromBasket(item.id);
+        const el = document.createElement('li');
+        el.innerText = item.title;
+        el.onclick = () => removeFromBasket(item.id);
         cart.appendChild(el);
     }
 );
